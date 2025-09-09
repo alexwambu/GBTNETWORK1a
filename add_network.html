@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Add GBTNetwork to MetaMask</title>
+    <style>
+      body { font-family: system-ui, Arial, sans-serif; padding: 24px; }
+      button { padding: 12px 18px; border-radius: 8px; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <h2>Add GBTNetwork to MetaMask</h2>
+    <p>RPC URL: <code>https://GBTNetwork:9636</code></p>
+    <p>Chain ID: <code>999</code> — Symbol: <code>GBT</code></p>
+    <button id="add">Add to MetaMask</button>
+
+    <script>
+      const params = {
+        chainId: '0x3E7',
+        chainName: 'GBTNetwork',
+        nativeCurrency: { name: 'GoldBarTether', symbol: 'GBT', decimals: 18 },
+        rpcUrls: ['https://GBTNetwork:9636','http://localhost:9636'],
+        blockExplorerUrls: []
+      };
+
+      document.getElementById('add').addEventListener('click', async () => {
+        if (!window.ethereum) {
+          alert('MetaMask not detected.');
+          return;
+        }
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [params]
+          });
+          alert('GBTNetwork added to MetaMask!');
+        } catch (err) {
+          alert('Failed: ' + err.message);
+        }
+      });
+    </script>
+  </body>
+</html>
