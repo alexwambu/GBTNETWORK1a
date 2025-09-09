@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: gbtnetwork-node
+    env: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: COINBASE
+        value: "0xa6a98c491Ede0a953670350d9304dc838B171d1E"
+    autoDeploy: true
+    ports:
+      - 9636
